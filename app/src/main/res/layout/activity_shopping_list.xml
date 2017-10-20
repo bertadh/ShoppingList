@@ -48,7 +48,8 @@
             android:layout_toLeftOf="@+id/btn_add"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="" />
+            android:text=""
+            android:imeOptions="actionDone"/>
     </RelativeLayout>
 
 </RelativeLayout>
