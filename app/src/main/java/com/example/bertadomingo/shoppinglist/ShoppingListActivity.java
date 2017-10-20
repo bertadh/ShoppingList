@@ -1,10 +1,13 @@
 package com.example.bertadomingo.shoppinglist;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +58,34 @@ public class ShoppingListActivity extends AppCompatActivity {
             }
         });
 
+        shopping_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                maybeRemoveItem(pos);
+                return true;
+            }
+        });
+    }
 
+    private void maybeRemoveItem(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirm);
+        builder.setMessage(String.format(
+                "Are you sure to remove '%1$s' ?",
+                ItemList.get(pos)
+        ));
+
+        builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ItemList.remove(pos);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel, null);
+
+        builder.create().show();
     }
 
     private void addItem() {
