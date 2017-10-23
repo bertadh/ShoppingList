@@ -24,7 +24,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     private Button btn_add;
     private EditText edit_item;
     private ArrayList<String> ItemList;
-    private ArrayAdapter<String> adapter;
+    private ShoppingListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         ItemList.add("Ous");
         ItemList.add("Patates");
 
-        adapter = new ArrayAdapter<String>(
+        adapter = new ShoppingListAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
                 ItemList
