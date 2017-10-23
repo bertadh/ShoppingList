@@ -23,7 +23,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     private ListView shopping_list;
     private Button btn_add;
     private EditText edit_item;
-    private ArrayList<String> ItemList;
+    private ArrayList<ShoppingItem> ItemList;
     private ShoppingListAdapter adapter;
 
     @Override
@@ -35,9 +35,9 @@ public class ShoppingListActivity extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_add);
         edit_item = (EditText) findViewById(R.id.edit_item);
 
-        ItemList = new ArrayList<String>();
-        ItemList.add("Ous");
-        ItemList.add("Patates");
+        ItemList = new ArrayList<>();
+        ItemList.add(new ShoppingItem("Ous", true));
+        ItemList.add(new ShoppingItem("Patates"));
 
         adapter = new ShoppingListAdapter(
                 this,
@@ -95,7 +95,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     private void addItem() {
         String txt = edit_item.getText().toString();
         if(!txt.isEmpty()){
-            ItemList.add(txt);
+            ItemList.add(new ShoppingItem(txt));
             adapter.notifyDataSetChanged();
             edit_item.setText("");
         }

@@ -17,7 +17,7 @@ import java.util.zip.Inflater;
  * Created by berta.domingo on 23/10/2017.
  */
 
-public class ShoppingListAdapter extends ArrayAdapter<String> {
+public class ShoppingListAdapter extends ArrayAdapter<ShoppingItem> {
     public ShoppingListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List objects) {
         super(context, resource, objects);
     }
@@ -32,8 +32,8 @@ public class ShoppingListAdapter extends ArrayAdapter<String> {
         }
 
         CheckBox shopping_item = (CheckBox) result.findViewById(R.id.shopping_item);
-        String item_text = getItem(position);
-        shopping_item.setText(item_text);
+        ShoppingItem item = getItem(position);
+        shopping_item.setText(item.getText());
 
         return result;
 
