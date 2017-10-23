@@ -39,7 +39,11 @@ public class ShoppingListActivity extends AppCompatActivity {
         ItemList.add("Ous");
         ItemList.add("Patates");
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ItemList);
+        adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                ItemList
+        );
 
         shopping_list.setAdapter(adapter);
 
