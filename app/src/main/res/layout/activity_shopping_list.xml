@@ -7,14 +7,26 @@
     tools:context="com.example.bertadomingo.shoppinglist.ShoppingListActivity">
 
 
+    <Switch
+        android:id="@+id/show_complet"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="50dp"
+        android:text="Mostrar elements completats:" />
+
     <ListView
         android:id = "@+id/shopping_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/relativeLayout" />
+        android:layout_above="@+id/relativeLayout"
+        android:layout_below="@+id/show_complet" />
 
     <RelativeLayout
         android:layout_width="match_parent"

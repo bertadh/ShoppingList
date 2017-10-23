@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.Switch;
 
 import java.util.List;
 import java.util.zip.Inflater;
@@ -33,6 +34,7 @@ public class ShoppingListAdapter extends ArrayAdapter<ShoppingItem> {
 
         CheckBox checkbox = (CheckBox) result.findViewById(R.id.shopping_item);
         ShoppingItem item = getItem(position);
+
         checkbox.setText(item.getText());
         checkbox.setChecked(item.isChecked());
 

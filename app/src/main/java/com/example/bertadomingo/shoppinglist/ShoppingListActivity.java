@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,16 +25,20 @@ public class ShoppingListActivity extends AppCompatActivity {
     private Button btn_add;
     private EditText edit_item;
     private ArrayList<ShoppingItem> ItemList;
+    private ArrayList<ShoppingItem> ItemDeleted;
     private ShoppingListAdapter adapter;
+    private Switch botoOculta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
+        ItemDeleted = new ArrayList<>();
 
         shopping_list = (ListView) findViewById(R.id.shopping_list);
         btn_add = (Button) findViewById(R.id.btn_add);
         edit_item = (EditText) findViewById(R.id.edit_item);
+        botoOculta = (Switch) findViewById(R.id.show_complet);
 
         ItemList = new ArrayList<>();
         ItemList.add(new ShoppingItem("Ous", true));
@@ -75,11 +80,35 @@ public class ShoppingListActivity extends AppCompatActivity {
                 /*ShoppingItem item = ItemList.get(position);
                 boolean checked = item.isChecked();
                 ItemList.get(position).setChecked();*/
+
                 ItemList.get(position).toggleChecked();
+                if (botoOculta.isChecked() == true) {
+                    if(ItemList.get(position).isChecked()){
+                        String item_txt = ItemList.get(position).getText();
+                        boolean item_chk = ItemList.get(position).isChecked();
+                        /*ItemDeleted.add(new ShoppingItem(
+                                ItemList.get(position).toString(),
+                                ItemList.get(position).isChecked())
+                        );*/
+                        ItemDeleted.add(item_txt, item_chk);
+                        ItemList.remove(position);
+                    }
+                }
                 adapter.notifyDataSetChanged();
             }
         });
 
+        /*botoOculta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i = 0; i < shopping_list.getVerticalFadingEdgeLength(); i++){
+                    if(ItemList.get(i).isChecked()){
+                        ItemDeleted.add(new ShoppingItem(ItemList.get(i).toString()));
+                        ItemList.remove(i);
+                    }
+                }
+            }
+        });*/
     }
 
     private void maybeRemoveItem(final int pos) {
