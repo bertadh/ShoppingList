@@ -69,6 +69,17 @@ public class ShoppingListActivity extends AppCompatActivity {
                 return true;
             }
         });
+        shopping_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                /*ShoppingItem item = ItemList.get(position);
+                boolean checked = item.isChecked();
+                ItemList.get(position).setChecked();*/
+                ItemList.get(position).toggleChecked();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
     }
 
     private void maybeRemoveItem(final int pos) {
@@ -76,7 +87,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         builder.setTitle(R.string.confirm);
         builder.setMessage(String.format(
                 "Are you sure to remove '%1$s' ?",
-                ItemList.get(pos)
+                ItemList.get(pos).getText()
         ));
 
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
@@ -99,6 +110,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             edit_item.setText("");
         }
+        shopping_list.smoothScrollToPosition(ItemList.size()-1);
     }
 
 }

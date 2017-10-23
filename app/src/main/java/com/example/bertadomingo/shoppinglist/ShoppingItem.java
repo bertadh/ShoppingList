@@ -34,4 +34,7 @@ public class ShoppingItem {
         this.checked = checked;
     }
 
+    public void toggleChecked() {
+        this.checked = !this.checked;
+    }
 }
